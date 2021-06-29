@@ -1,0 +1,45 @@
+.v-snack {
+  height: unset !important;
+  padding: 0 !important;
+  position: unset !important;
+  &.test-1 {
+    ::v-deep .v-snack__wrapper {
+      width: 400px;
+      margin: 0;
+    }
+  }
+  &.test-2 {
+    ::v-deep .v-snack__wrapper {
+      width: 400px;
+      margin: 0;
+    }
+  }
+  ::v-deep &__wrapper {
+    width: 400px;
+    margin: 0;
+  }
+  ::v-deep &__action {
+    flex-direction: column;
+  }
+}
+
+.exf-notification {
+  &.has-stack {
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  &__stack {
+    position: absolute !important;
+    z-index: 0 !important;
+    &.first {
+      background-color: lighten(#333333, 10%) !important;
+      bottom: 4px;
+      transform: translateY(-4px) scale(0.95);
+    }
+    &.second {
+      background-color: lighten(#333333, 20%) !important;
+      bottom: 0;
+      transform: translateY(0) scale(0.9);
+    }
+  }
+}

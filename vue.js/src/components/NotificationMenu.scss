@@ -1,0 +1,9 @@
+.v-list-item {
+  border-left: 4px solid transparent;
+  &.unread {
+    border-color: lighten(#1976d2, 20%);
+  }
+  ::v-deep .v-list-item__title {
+    white-space: unset;
+  }
+}

@@ -1,0 +1,47 @@
+.v-progress-linear {
+  margin: 16px 0;
+}
+
+#exoform {
+  .exf-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  .exf-container.exf-theme-material .exf-ctl-cnt > .exf-ctl > input,
+  .exf-container.exf-theme-material .exf-ctl-cnt > .exf-ctl > select,
+  .exf-container.exf-theme-material .exf-ctl-cnt > .exf-ctl > textarea {
+    height: unset;
+    margin-top: 0;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    line-height: unset;
+    border: 0;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: transparent;
+  }
+  .exf-container {
+    &.exf-theme-material .exf-ctl-cnt.exf-invalid .exf-help:before {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      text-align: center;
+      line-height: 20px;
+      border-radius: 50%;
+    }
+    .exf-ctl-cnt {
+      padding: 0;
+      margin-bottom: 0;
+    }
+    div[data-field-type="multiinput"] > .exf-ctl > .exf-label {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}

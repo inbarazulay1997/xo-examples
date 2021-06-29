@@ -1,0 +1,40 @@
+#exoform {
+  --color-background: white;
+  --color-background-variation: #efefef;
+  --color-panel-background: #ddd;
+  --color-disabled: #ebebe4;
+  --color-readonly: #fcfcfc;
+  --color-text: #333;
+  --color-button: #16007b;
+  --color-button-primary: #cc2e44;
+  --color-buttontext: #ffffff;
+  --scrollbar-bg: #bfcadb;
+  --color-base: #16007b;
+  --l: 73%;
+  --color-text-lessbright: hsl(var(--color-text), 78%, calc(var(--l) - 20%));
+  --color-primary: hsl(var(--color-base), 78%, var(--l));
+  --color-primary-dark: hsl(var(--color-base), 78%, calc(var(--l) - 5%));
+  --color-primary-darker: hsl(var(--color-base), 78%, calc(var(--l) - 10%));
+  --color-primary-darkest: hsl(var(--color-base), 78%, calc(var(--l) - 25%));
+  --color-primary-light: hsl(var(--color-base), 78%, calc(var(--l) + 5%));
+  --color-primary-lighter: hsl(var(--color-base), 78%, calc(var(--l) + 10%));
+  --color-primary-lightest: hsl(var(--color-base), 78%, calc(var(--l) + 25%));
+  --color-secondary: var(--color-primary-darker);
+  --color-shade: #bfcadb;
+  --color-heading: rgb(173, 58, 4);
+  --placeholder-color: #ccc;
+  --shadow-color: var(--color-primary-lighter);
+  --field-box-shadow: #bbb;
+  --field-box-shadow-subtle: #ddd;
+  --button-shadow-color: #999;
+  --label-color: #444;
+
+  --color-button: #3388bb;
+  --color-button-disabled: #3388bb;
+  --field-box-shadow-subtle: #555;
+  --field-box-shadow: #888;
+  --color-shade: #888;
+  --color-label: rgba(0, 0, 0, 0.87);
+  --color-label-active: rgba(0, 0, 0, 0.87);
+  --color-input-shade: #190078;
+}

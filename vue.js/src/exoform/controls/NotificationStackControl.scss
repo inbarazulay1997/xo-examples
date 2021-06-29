@@ -1,0 +1,17 @@
+.exf-notification-stack {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  .exf-notification {
+    margin: 0.5rem 0.5rem 1rem;
+    &.has-progress-bar {
+      ::v-deep .v-progress-linear {
+        margin: 0;
+      }
+      ::v-deep .v-snack__wrapper {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+}
