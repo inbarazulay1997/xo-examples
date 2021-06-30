@@ -12,8 +12,10 @@ class NotificationStack extends xo.form.fields.base.controls.div.type {
   events: any = null;
   app: Vue | null = null;
   types: Array<INotificationType> = notificationTypes;
+
   constructor(context: any) {
     super(context);
+    // bind the XO events class to the Notification Stack Control
     this.events = new xo.core.Events(this, {});
     (this as any).htmlElement.data = {};
     // set properties to be approachable directly from 'this'
@@ -36,12 +38,13 @@ class NotificationStack extends xo.form.fields.base.controls.div.type {
     // retrieve parent functions ExoForm Div control
     await super.render();
 
+    // start listening to all triggered "action" events
     _.on("action", (ev: IDetailedEvent) => {
       switch (ev.detail.id) {
         case "mounted":
+          // once the notification stack control is mounted, add a new notification to the model after 5 seconds
           setTimeout(() => {
             this.value.push({ text: "New notification", id: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5), type: "success", timeout: 5000 });
-            this.events.trigger("action", { id: "addNotification", notifications: this.value });
           }, 5000);
           break;
         case "statusChange":
@@ -50,12 +53,13 @@ class NotificationStack extends xo.form.fields.base.controls.div.type {
       }
     });
 
-    // generate a new HTML DOM containing the Vue application, so this can be mounted to the generated container by ExoForm
+    // generate a new HTML DOM containing the Vue application, so this can be mounted to the generated container by XO
     this.app = new Vue({
       render(createElement) {
         return createElement(
           NotificationStackControl,
           {
+            // add props to be used in Vue component
             props: {
               notifications: _.notifications,
               maxItems: _.maxItems,
@@ -74,7 +78,7 @@ class NotificationStack extends xo.form.fields.base.controls.div.type {
       vuetify
     }).$mount();
 
-    // mount Vue application to ExoForm generated HTMLDivElement
+    // mount Vue application to XO form generated HTMLDivElement
     _.container.appendChild(this.app.$el);
 
     return _.container;

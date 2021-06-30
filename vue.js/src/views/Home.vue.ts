@@ -11,17 +11,18 @@ export default class Home extends Vue {
   numberOfClicks = 0;
 
   async mounted(): Promise<void> {
-    // xo.form.bind((obj: any) => {
-    //   if (obj.state === "ready") {
-    //     this.formData = obj.instances;
-    //   }
-    // }, true);
+    // connect the formData value to the data instance of the XO form
     xo.form.data("home-form", "data", (o: any) => this.formData = o);
 
+    // run the schema and append it to the document
     this.form = await xo.form.run(schema, { id: "home-form" }) as HTMLElement;
     document.getElementById("exoform")?.appendChild(this.form);
   }
 
+  /**
+   * Update the amount of clicks in the formData
+   * This will update the XO form model and the form itself as well
+   */
   btnClicked(): void {
     this.formData.clicks.amount += 1;
   }

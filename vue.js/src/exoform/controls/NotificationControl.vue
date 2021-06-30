@@ -5,6 +5,8 @@
       'has-progress-bar': notification.timeout,
       'has-stack': stackAmount,
     }"
+    @mouseenter="paused = true;"
+    @mouseleave="paused = false;"
   >
     <v-snackbar
       v-model="showSnackbar"
@@ -43,7 +45,7 @@
       </template>
     </v-snackbar>
     <v-progress-linear
-      v-model="progress"
+      v-model="progress.percentage"
       :color="color"
       v-if="notification.timeout"
     ></v-progress-linear>

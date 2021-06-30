@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import { EventBus } from './event-bus';
+// import the XO custom controls for use in the application
 import './exoform/customContols';
 import NotificationMenu from '@/components/NotificationMenu.vue';
 import { INotification } from './exoform/types/domainTypes';
@@ -16,11 +16,13 @@ export default class App extends Vue {
 
   mounted() {
     xo.form.bind((obj: any) => {
-      if (obj.state === "ready") {
+      // bind home-form if the form state is ready
+      if (obj.state === "ready" && obj.exo.id === "home-form") {
+        // set formData for reactivity between Vue and XO
         this.formData = obj.instances.data;
         this.exo = obj.exo;
       }
-    }, true);
+    }, false);
   }
 
   get userName() {

@@ -15,7 +15,8 @@ export default class NotificationControl extends Vue {
   showSnackbar = true;
   text = "";
   expanded = false;
-  progress = 0;
+  progress = { amount: 0, percentage: 0 };
+  paused = false;
 
   @Emit('closeNotification')
   close() {
@@ -25,7 +26,6 @@ export default class NotificationControl extends Vue {
   @Watch("notification.id")
   setNewNotification() {
     if (this.notification.timeout) {
-      this.notification.hideOn = new Date().getTime() + this.notification.timeout;
       setInterval(() => this.setProgressStatus(), 10);
     }
   }
@@ -37,11 +37,6 @@ export default class NotificationControl extends Vue {
     if (!this.expanded && this.maxCharacters && this.notification.text.length > this.maxCharacters) {
       this.text = `${this.notification.text.substr(0, this.maxCharacters)}...`;
     }
-  }
-
-  @Watch("progress")
-  progressChange(newVal: number) {
-    if (newVal >= 100) this.close();
   }
 
   mounted() {
@@ -60,9 +55,12 @@ export default class NotificationControl extends Vue {
   }
 
   setProgressStatus(): void {
-    if (this.notification.timeout && this.notification.hideOn && this.notification.status !== NotificationStatus.CLOSED) {
-      const timeLeft = this.notification.hideOn - new Date().getTime();
-      this.progress = 100 - timeLeft / this.notification.timeout * 100;
+    if (this.notification.timeout && this.notification.status !== NotificationStatus.CLOSED && !this.paused) {
+      this.progress.amount += 10;
+      this.progress.percentage = this.progress.amount / this.notification.timeout * 100;
+      if (this.progress.amount >= this.notification.timeout) {
+        this.close();
+      }
     }
   }
 

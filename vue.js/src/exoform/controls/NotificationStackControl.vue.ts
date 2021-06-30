@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import { IDetailedEvent, INotification, INotificationType, NotificationStatus } from '../types/domainTypes';
 import NotificationControl from './NotificationControl.vue';
 
@@ -35,6 +35,7 @@ export default class NotificationStackControl extends Vue {
     return i === this.visibleNotifications.length - 1 ? this.notifications.filter(n => n.status !== NotificationStatus.CLOSED).length - this.maxItems : 0;
   }
 
+  @Watch("notifications")
   setVisibleNotifications(): void {
     this.visibleNotifications = this.notifications.filter(n => n.status !== NotificationStatus.CLOSED)
       .reverse()
@@ -51,6 +52,7 @@ export default class NotificationStackControl extends Vue {
   }
 
   listen(): void {
+    // listen to form events to trigger actions in the control
     this.exo.on("action", (event: IDetailedEvent) => {
       switch (event.detail.id) {
         case "addNotification":
@@ -72,11 +74,6 @@ export default class NotificationStackControl extends Vue {
 
     const cssSheet = document.createElement("style");
     cssSheet.id = `notification-types`;
-    cssSheet.innerHTML = this.maxItems ? `
-      .exf-notification:nth-child(-n+0),
-      .exf-notification:nth-child(n+${this.maxItems + 1}) {
-        display: none;
-      }` : '';
     this.types.forEach(t => {
       cssSheet.innerHTML += `
         .v-snack.exf-notification-${t.name},

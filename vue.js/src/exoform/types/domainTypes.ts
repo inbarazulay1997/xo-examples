@@ -19,8 +19,7 @@ export interface INotification {
   buttons?: Array<INotificationButton>,
   dismissible?: boolean,
   expanded?: boolean,
-  status?: NotificationStatus,
-  hideOn?: number
+  status?: NotificationStatus
 }
 
 export interface IDetailedEvent extends Event {

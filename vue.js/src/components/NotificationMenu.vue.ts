@@ -34,6 +34,7 @@ export default class NotificationMenu extends Vue {
 
   close(n: INotification): void {
     n.status = NotificationStatus.CLOSED;
+    // trigger an action event to be handled by the XO control
     this.exo.get("notification_stack")._control.events.trigger("action", { id: "statusChange", status: "closed", notification: n });
   }
 
