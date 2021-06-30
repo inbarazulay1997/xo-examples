@@ -11,13 +11,14 @@ export default class Home extends Vue {
   numberOfClicks = 0;
 
   async mounted(): Promise<void> {
-    xo.form.bind((obj: any) => {
-      if (obj.state === "ready") {
-        this.formData = obj.instances;
-      }
-    }, true);
+    // xo.form.bind((obj: any) => {
+    //   if (obj.state === "ready") {
+    //     this.formData = obj.instances;
+    //   }
+    // }, true);
+    xo.form.data("home-form", "data", (o: any) => this.formData = o);
 
-    this.form = await xo.form.run(schema, {}) as HTMLElement;
+    this.form = await xo.form.run(schema, { id: "home-form" }) as HTMLElement;
     document.getElementById("exoform")?.appendChild(this.form);
   }
 

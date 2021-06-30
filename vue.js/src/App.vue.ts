@@ -17,7 +17,7 @@ export default class App extends Vue {
   mounted() {
     xo.form.bind((obj: any) => {
       if (obj.state === "ready") {
-        this.formData = obj.instances;
+        this.formData = obj.instances.data;
         this.exo = obj.exo;
       }
     }, true);
