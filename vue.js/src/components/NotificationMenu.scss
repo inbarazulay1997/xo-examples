@@ -1,5 +1,6 @@
 .v-list-item {
   border-left: 4px solid transparent;
+  padding: .5rem 1rem;
   &.unread {
     border-color: lighten(#1976d2, 20%);
   }
